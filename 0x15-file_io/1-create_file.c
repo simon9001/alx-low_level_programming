@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * _strlen - gets length of given string
- * @str: the string to find its length
+ * _strlen - gets length of string
+ * @str: string to compute length
  *
- * Return: the length of the string
+ * Return: length of string
  */
 size_t _strlen(const char *str)
 {
@@ -16,34 +16,33 @@ size_t _strlen(const char *str)
 }
 
 /**
- * append_text_to_file - adds a text at the end of a file
- * @filename: the file to manipulate
- * @text_content: the content to add to file
- * Description: only appends if file exists
+ * create_file - creates a new file
+ * @filename: name of the file to create
+ * @text_content: the text to write in the file created
+ * Description: creates a new file and sets access permission to read-write
+ * if file already exists, trucates it and doesn't change access permissions
  *
- * Return: 1 on success, -1 otherwise
+ * Return: returns 1 on success, -1 otherwise
  */
-int append_text_to_file(const char *filename, char *text_content)
+int create_file(const char *filename, char *text_content)
 {
 	int f_open, f_close;
 	ssize_t char_print;
 
 	if (!filename)
 		return (-1);
-	/* open file in write only mode */
-	f_open = open(filename, O_WRONLY || O_APPEND);
-	if (f_open < 0)
+	f_open = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
+	if (f_open == -1)
 		return (-1);
 
-	if (text_content) /* write text if available */
+	if (text_content)
 	{
 		char_print = write(f_open, text_content, _strlen(text_content));
-		if (char_print < 0)
+		if (char_print == -1)
 			return (-1);
 	}
-	/* close file and check for errors */
 	f_close = close(f_open);
-	if (f_close < 0)
+	if (f_close == -1)
 		return (-1);
 
 	return (1);
