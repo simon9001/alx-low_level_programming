@@ -1,5 +1,17 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef _MAIN_H_
+#define _MAIN_H_
+
+#include <stdio.h>
+#include <stdlib.h>
+
+/*
+ * File: main.h
+ * Author: Alex O. Arevalo T.
+ * email: 3915@holbertonschool.com
+ * Desc: Header file containing prototypes for all functions
+ *       in the 0x18. C - Dynamic libraries.
+ */
+
 int _putchar(char c);
 int _islower(int c);
 int _isalpha(int c);
@@ -20,4 +32,5 @@ char *_strchr(char *s, char c);
 unsigned int _strspn(char *s, char *accept);
 char *_strpbrk(char *s, char *accept);
 char *_strstr(char *haystack, char *needle);
-#endif/*MAIN_H*/
+
+#endif /* MAIN_H */
